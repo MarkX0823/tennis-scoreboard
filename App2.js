@@ -1,16 +1,25 @@
 import React from 'react';
-import Team from './Team';
-import {View} from 'react-native';
+import Team from './src/components/Team';
+import {View, StyleSheet} from 'react-native';
+import {createStore} from 'redux';
+import rootReducer from './src/reducers';
+import {Provider} from 'react-redux';
+
+const store = createStore(rootReducer);
 
 const App: () => React$Node = () => {
   return (
-    <>
-      <View style={{flex: 1, flexDirection: 'row'}}>
+    <Provider store={store}>
+      <View style={styles.view}>
         <Team name="Hawks" />
         <Team name="Eagles" />
       </View>
-    </>
+    </Provider>
   );
 };
+
+const styles = StyleSheet.create({
+  view: {flex: 1, flexDirection: 'row'},
+});
 
 export default App;
