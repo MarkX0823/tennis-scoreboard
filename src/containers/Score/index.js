@@ -8,7 +8,20 @@ class Score extends Component {
   }
 
   render() {
-    return <Text h1>{this.props.score}</Text>;
+    let score;
+    switch (this.props.pos) {
+      case 'L':
+        score = this.props.score.L;
+        break;
+      case 'R':
+        score = this.props.score.R;
+        break;
+      default:
+        score = -1;
+        break;
+    }
+
+    return <Text h1>{score}</Text>;
   }
 }
 

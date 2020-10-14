@@ -12,7 +12,7 @@ class IncreaseScore extends Component {
     return (
       <Button
         title="+2"
-        onPress={() => this.props.dispatch(increaseScore())}
+        onPress={() => this.props.dispatch(increaseScore(this.props.pos))}
         background={TouchableNativeFeedback.SelectableBackground()}
       />
     );

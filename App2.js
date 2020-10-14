@@ -11,8 +11,8 @@ const App: () => React$Node = () => {
   return (
     <Provider store={store}>
       <View style={styles.view}>
-        <Team name="Hawks" />
-        <Team name="Eagles" />
+        <Team name="Hawks" pos="L" />
+        <Team name="Eagles" pos="R" />
       </View>
     </Provider>
   );
