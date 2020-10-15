@@ -11,10 +11,10 @@ class Score extends Component {
     let score;
     switch (this.props.pos) {
       case 'L':
-        score = this.props.score.L;
+        score = this.props.score.L.point;
         break;
       case 'R':
-        score = this.props.score.R;
+        score = this.props.score.R.point;
         break;
       default:
         score = -1;

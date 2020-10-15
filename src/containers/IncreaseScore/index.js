@@ -11,7 +11,7 @@ class IncreaseScore extends Component {
   render() {
     return (
       <Button
-        title="+2"
+        title="win"
         onPress={() => this.props.dispatch(increaseScore(this.props.pos))}
         background={TouchableNativeFeedback.SelectableBackground()}
       />
