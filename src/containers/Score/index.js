@@ -8,13 +8,14 @@ class Score extends Component {
   }
 
   render() {
+    let point = this.props.score[this.props.score.length - 1];
     let score;
     switch (this.props.pos) {
       case 'L':
-        score = this.props.score.L.point;
+        score = point.L.point;
         break;
       case 'R':
-        score = this.props.score.R.point;
+        score = point.R.point;
         break;
       default:
         score = -1;

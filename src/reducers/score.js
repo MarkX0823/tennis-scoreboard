@@ -1,17 +1,21 @@
-const initialState = {
-  L: {
-    point: 0,
-    game: [0],
-    set: [0],
-    ad: false,
-  },
-  R: {
-    point: 0,
-    game: [0],
-    set: [0],
-    ad: false,
-  },
-};
+import produce from 'immer';
+import cloneDeep from 'lodash/cloneDeep';
+
+class Player {
+  constructor() {
+    this.point = 0;
+    this.game = 0;
+    this.set = 0;
+    this.ad = false;
+  }
+}
+
+class Point {
+  constructor() {
+    this.L = new Player();
+    this.R = new Player();
+  }
+}
 
 const incGame = (winner, loser) => {
   console.log('incGame');
@@ -47,25 +51,28 @@ const incPoint = (winner, loser) => {
   }
 };
 
-const calculate = (state, pos) => {
+const calculate = (point, pos) => {
   switch (pos) {
     case 'L':
-      incPoint(state.L, state.R);
+      incPoint(point.L, point.R);
       break;
     case 'R':
-      incPoint(state.R, state.L);
+      incPoint(point.R, point.L);
       break;
     default:
       break;
   }
-  console.log(state);
-  return state;
 };
 
-const score = (state = initialState, action) => {
+const score = (state = [new Point()], action) => {
   switch (action.type) {
     case 'INCREASE_SCORE':
-      return Object.assign({}, calculate(state, action.payload.pos));
+      const point = cloneDeep(state[state.length - 1]);
+      const _state = produce(state, draftState => {
+        calculate(point, action.payload.pos);
+        draftState.push(point);
+      });
+      return _state;
     default:
       return state;
   }
