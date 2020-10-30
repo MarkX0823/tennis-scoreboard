@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Text, View} from 'react-native';
 import {connect} from 'react-redux';
 import styles from './styles';
-import {increaseScore} from '../../actions';
+import {actionIncreaseScore} from '../../actions';
 import ButtonIncreaseScore from '../../components/ButtonIncreaseScore';
 
 class Team extends Component {
@@ -19,7 +19,7 @@ class Team extends Component {
           <Text h1>{score[score.length - 1].L.point}</Text>
           <ButtonIncreaseScore
             onPress={() => {
-              this.props.dispatch(increaseScore('L'));
+              this.props.increaseScore('L');
             }}
           />
         </View>
@@ -28,7 +28,7 @@ class Team extends Component {
           <Text h1>{score[score.length - 1].R.point}</Text>
           <ButtonIncreaseScore
             onPress={() => {
-              this.props.dispatch(increaseScore('R'));
+              this.props.increaseScore('R');
             }}
           />
         </View>
@@ -37,8 +37,15 @@ class Team extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  increaseScore: player => dispatch(actionIncreaseScore(player)),
+});
+
 const mapStateToProps = state => ({
   score: state.score,
 });
 
-export default connect(mapStateToProps)(Team);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Team);
