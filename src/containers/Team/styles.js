@@ -1,7 +1,11 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  view: {
+  team: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  score: {
     flex: 1,
     flexDirection: 'column',
   },

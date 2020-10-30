@@ -1,6 +1,5 @@
 import React from 'react';
-import Team from './src/components/Team';
-import {View, StyleSheet} from 'react-native';
+import Team from './src/containers/Team';
 import {createStore, applyMiddleware} from 'redux';
 import rootReducer from './src/reducers';
 import {Provider} from 'react-redux';
@@ -26,16 +25,9 @@ const store = createStore(rootReducer, applyMiddleware(...middleware));
 const App: () => React$Node = () => {
   return (
     <Provider store={store}>
-      <View style={styles.view}>
-        <Team name="Hawks" pos="L" />
-        <Team name="Eagles" pos="R" />
-      </View>
+      <Team />
     </Provider>
   );
 };
-
-const styles = StyleSheet.create({
-  view: {flex: 1, flexDirection: 'row'},
-});
 
 export default App;
